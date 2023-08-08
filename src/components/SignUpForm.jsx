@@ -10,25 +10,27 @@ const [error, setError] = useState(null);
 
 
 async function handleSubmit(e){
-    e.preventdefault();
+    e.preventDefault();
+    //setUserName();
+    //console.log('Hello')
 
-    if(userName.length < 8) {
-        setError("Username mube be at least eight characters.");
-        return;
-    }
+    // if(userName.length < 8) {
+    //     setError("Username mube be at least eight characters.");
+    //     return;
+    // }
     
     try{
         const response = await fetch(
             "https://fsa-jwt-practice.herokuapp.com/signup",
              {
                method: 'POST',
-               header: {
+               headers: {
                   'Content-Type': "application/json",
-            },
-            body:JSON.stringify({userName, password})
+                }, 
+                  body: JSON.stringify({userName, password})  
        }
      );
-       console.log(response);
+       //console.log(response);
         const result = await response.json();
         console.log(result);
         setToken(result.token);
@@ -36,7 +38,7 @@ async function handleSubmit(e){
     }catch(error){
         setError(error.message)
     }
-}
+};
   //setUserName();
 return (
 <div className="setup"> 
@@ -49,7 +51,7 @@ return (
     onChange={(e) => setUserName(e.target.value)} />
  </label>
  <label>
-    Password: <input type="password" name="password" id="password" value={password} autoComplete="current-password" required 
+    Password: <input type="password" name="password" id="password" value={password} autoComplete="current-password" required
     onChange={(e) => setPassword(e.target.value)} />
  </label>
  <button >Submit</button>
@@ -58,6 +60,9 @@ return (
 </div>
   )
 }
+
+//autoComplete="userName" required 
+//autoComplete="current-password" required 
 
 // note: form using autocompleate attributes saving user forn accidentally saving or autofill the worng data. 
 

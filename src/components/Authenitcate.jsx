@@ -12,13 +12,14 @@ export default function Authenticate({token}){
             "https://fsa-jwt-practice.herokuapp.com/authenticate", 
             {
               method: 'GET',
-              header: {
+              headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
               }
             }
         );
         const result = await response.json();
+        //console.log(result);
         setSuccessMessage(result.message);
         setUsername(result.data.username)
       }catch(error){
