@@ -12,7 +12,7 @@ const [error, setError] = useState(null);
 async function handleSubmit(e){
     e.preventDefault();
     //setUserName();
-    //console.log('Hello')
+    console.log('Hello')
 
     // if(userName.length < 8) {
     //     setError("Username mube be at least eight characters.");
